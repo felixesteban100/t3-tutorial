@@ -6,13 +6,18 @@ generator client {
     previewFeatures = ["jsonProtocol"]
 }
 
+// datasource db {
+//     provider = "sqlite"
+//     url      = env("DATABASE_URL")
+// }
+
 datasource db {
-    provider = "sqlite"
-    url      = env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 model Example {
-    id        String   @id @default(cuid())
+    id        String   @id @default(cuid()) @map("_id")
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
